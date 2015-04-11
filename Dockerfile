@@ -28,4 +28,4 @@ VOLUME ["/logstash/config"]
 # logstash certs
 VOLUME ["/logstash/certs"]
 
-CMD ["/logstash/bin/logstash", "--quiet",  "-f", "/logstash/config/logstash.conf"]
+CMD ["/logstash/bin/logstash", "--quiet",  "-f", "/logstash/config/"]
