@@ -12,7 +12,7 @@ $ docker build ./
 ```
 $ git clone https://github.com/keithchambers/docker-logstash.git
 $ cd docker-logstash
-$ docker run --rm -p 5000:5000 -v $PWD/logstash.conf:/logstash.conf/config keithchambers/docker-logstash
+$ docker run -p 5000:5000 -v $PWD/logstash.conf:/logstash/config keithchambers/docker-logstash
 ```
 
 ## Configure rsyslog
