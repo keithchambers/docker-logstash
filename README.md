@@ -18,5 +18,5 @@ $ docker run --rm -p 5000:5000 -v $PWD/logstash.conf:/logstash.conf/config keith
 ## Configure rsyslog
 Add the following line to `/etc/rsyslog.conf` to forward all longs to the logstash container
 ```
-*.* @@<container-host>:5000
+*.* @@<ip-address>:5000
 ```
