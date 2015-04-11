@@ -1,22 +1,31 @@
 FROM progrium/busybox
 
+# logstash version
+ENV VERSION 1.5.0.rc2
+
+# logstash listener
 EXPOSE 5000
 
-ENV LOGSTASH_VERSION 1.5.0.rc2
+# install needed packages
+RUN opkg-install bash curl grep ca-certificates
 
-RUN opkg-install bash curl grep ca-certificates \
-    && curl -Lskj -b "oraclelicense=accept-securebackup-cookie" \
-            http://download.oracle.com/otn-pub/java/jdk/8u40-b26/jre-8u40-linux-x64.tar.gz | \
-            gunzip -c - | tar xf - -C /opt \
+# install java
+RUN curl -Lskj -b "oraclelicense=accept-securebackup-cookie" \
+        http://download.oracle.com/otn-pub/java/jdk/8u40-b26/jre-8u40-linux-x64.tar.gz | \
+        gunzip -c - | tar xf - -C /opt \
     && rm -rf $(find /opt/ | grep -E "/jre1.8.0_40/lib/(desktop|locale|fonts|plugin)/") \
-    && ln -s /opt/jre1.8.0_40/bin/java /usr/bin/java \
-    && curl -Lskj "http://download.elastic.co/logstash/logstash/logstash-$LOGSTASH_VERSION.tar.gz" | \
-            gunzip -c - | tar xf - -C /tmp \
-    && mv "/tmp/logstash-$LOGSTASH_VERSION" /logstash \
+    && ln -s /opt/jre1.8.0_40/bin/java /usr/bin/java
+
+# install logstash    
+RUN curl -Lskj "http://download.elastic.co/logstash/logstash/logstash-$VERSION.tar.gz" | \
+        gunzip -c - | tar xf - -C /tmp \
+    && mv "/tmp/logstash-$VERSION" /logstash \
     && rm -rf $(find /logstash | egrep "(\.(exe|bat)$|sigar/.*(dll|winnt|x86-linux|solaris|ia64|freebsd|macosx))")
 
+# logstash config
 VOLUME ["/logstash/config"]
 
+# logstash certs
 VOLUME ["/logstash/certs"]
 
 CMD ["/logstash/bin/logstash", "--quiet",  "-f", "/logstash/config/logstash.conf"]
