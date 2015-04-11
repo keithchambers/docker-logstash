@@ -3,8 +3,8 @@ FROM progrium/busybox
 # logstash version
 ENV VERSION 1.5.0.rc2
 
-# logstash listener
-EXPOSE 5000
+# syslog listener
+EXPOSE 514
 
 # install needed packages
 RUN opkg-install bash curl grep ca-certificates
