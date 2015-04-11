@@ -12,11 +12,5 @@ $ docker build ./
 ```
 $ git clone https://github.com/keithchambers/docker-logstash.git
 $ cd docker-logstash
-$ docker run --rm -v $PWD:/logstash/config keithchambers/docker-logstash
-```
-
-## Test
-Send a test message with logger
-```
-$ logger -p 5000 --udp "foo"
+$ docker run --rm -v $PWD/logstash.conf:/logstash.conf/config keithchambers/docker-logstash
 ```
