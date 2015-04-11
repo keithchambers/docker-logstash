@@ -12,5 +12,11 @@ $ docker build ./
 ```
 $ git clone https://github.com/keithchambers/docker-logstash.git
 $ cd docker-logstash
-$ docker run --rm -v $PWD/logstash.conf:/logstash.conf/config keithchambers/docker-logstash
+$ docker run --rm -p 5000:5000 -v $PWD/logstash.conf:/logstash.conf/config keithchambers/docker-logstash
+```
+
+## Configure rsyslog
+Add the following line to `/etc/rsyslog.conf` to forward all longs to the logstash container
+```
+*.* @@<container-host>:5000
 ```
