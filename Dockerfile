@@ -1,7 +1,7 @@
 FROM progrium/busybox
 
 # logstash version
-ENV VERSION 1.5.0-rc3
+ENV VERSION 1.5.0
 
 # syslog listener
 EXPOSE 514
