@@ -29,7 +29,7 @@ RUN curl -Lskj "http://download.elastic.co/logstash/logstash/logstash-$VERSION.t
     && rm -rf $(find /logstash | egrep "(\.(exe|bat)$|sigar/.*(dll|winnt|x86-linux|solaris|ia64|freebsd|macosx))")
 
 # add logstash configuration
-ADD logstash.conf /logstash/config
+ADD logstash.conf /logstash/config/logstash.conf
 
 # create log directory
 RUN mkdir /logs
