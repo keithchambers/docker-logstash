@@ -4,7 +4,13 @@ FROM progrium/busybox
 ENV VERSION 1.5.0
 
 # syslog listener
-EXPOSE 514
+EXPOSE 514/udp
+
+# collectd listener
+EXPOSE 25826/udp
+
+# statsd listener
+EXPOSE 8125/udp
 
 # install needed packages
 RUN opkg-install bash curl grep ca-certificates
