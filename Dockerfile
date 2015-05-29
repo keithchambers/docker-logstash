@@ -4,7 +4,7 @@ FROM progrium/busybox
 ENV VERSION 1.5.0
 
 # syslog listener
-EXPOSE 1514/udp
+EXPOSE 1514
 
 # collectd listener
 EXPOSE 25826/udp
